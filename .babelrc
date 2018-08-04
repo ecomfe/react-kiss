@@ -1,0 +1,28 @@
+{
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "chrome": "45",
+                    "safari": "10"
+                },
+                "exclude": [
+                    "transform-regenerator",
+                    "transform-async-to-generator"
+                ],
+                "modules": false,
+                "useBuiltIns": "entry",
+                "debug": false
+            }
+        ],
+        "stage-1",
+        "react"
+    ],
+    "plugins": [
+        "lodash",
+        "react-require",
+        "add-react-displayname",
+        "external-helpers"
+    ]
+}
