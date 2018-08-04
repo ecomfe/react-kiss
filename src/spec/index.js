@@ -1,0 +1,1 @@
+export defineQueryRegion from './query';
