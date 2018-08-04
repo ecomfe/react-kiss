@@ -22,7 +22,18 @@
     "plugins": [
         "lodash",
         "react-require",
-        "add-react-displayname",
-        "external-helpers"
-    ]
+        "add-react-displayname"
+    ],
+    "env": {
+        "development": {
+            "plugins": [
+                "transform-decorators-legacy"
+            ]
+        },
+        "production": {
+            "plugins": [
+                "external-helpers"
+            ]
+        }
+    }
 }

@@ -61,3 +61,5 @@ typings/
 .next
 /es
 /cjs
+.DS_Store
+/demo/dist
