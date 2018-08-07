@@ -3,31 +3,31 @@ import {get} from 'lodash';
 import {defineRegion} from '../region';
 
 export default (api, {once = false} = {}) => {
-    const initialState = {};
+    const initialState = {
+        queries: {}
+    };
 
     const workflows = {
         * request(params, getState) {
             const paramsKey = stringify(params);
             const transfer = patch => state => {
-                const query = state[paramsKey];
+                const query = state.queries[paramsKey];
                 const queryPatch = typeof patch === 'function' ? patch(query) : patch;
 
                 return {
-                    [paramsKey]: {
-                        ...query,
-                        ...queryPatch
+                    queries: {
+                        ...state.queries,
+                        [paramsKey]: {
+                            ...query,
+                            ...queryPatch
+                        }
                     }
                 };
             };
 
-            if (!getState()[paramsKey]) {
-                yield {
-                    [paramsKey]: {
-                        params,
-                        pendingMutex: 0,
-                        response: null
-                    }
-                };
+            const stateBeforeRequest = getState();
+            if (!stateBeforeRequest.queries[paramsKey]) {
+                yield transfer({params, pendingMutex: 0, response: null});
             }
 
             const previousResponseData = get(getState(), [paramsKey, 'response', 'data']);
@@ -52,5 +52,16 @@ export default (api, {once = false} = {}) => {
         }
     };
 
-    return defineRegion(initialState, workflows);
+    const findQuery = ({queries}, params) => queries[stringify(params)];
+    const findResponse = (state, params) => {
+        const query = findQuery(state, params);
+        return query && query.response;
+    };
+    const findData = (state, params) => {
+        const response = findResponse(state, params);
+        return response && response.data;
+    };
+    const selectors = {findQuery, findResponse, findData};
+
+    return defineRegion(initialState, workflows, selectors);
 };

@@ -24,7 +24,7 @@ export default (...args) => {
         const otherProps = removeRegionProps(props);
 
         return {
-            ...mapToProps(...regionProps),
+            ...mapToProps(...regionProps, otherProps),
             ...otherProps
         };
     };
