@@ -27,7 +27,7 @@ export default (api, {once = false} = {}) => {
 
             const stateBeforeRequest = getState();
             if (!stateBeforeRequest.queries[paramsKey]) {
-                yield transfer({params, pendingMutex: 0, response: null});
+                yield transfer({params, pendingMutex: 0, response: undefined});
             }
 
             const previousResponseData = get(getState(), [paramsKey, 'response', 'data']);
