@@ -87,6 +87,23 @@ This generator function receives `(payload, getState)` as its arguments, and yie
 - a function is treated as a state updater.
 - a `Promise` instance is treated as an async process, its resolved value or rejected error will returned back to `yield` expression.
 
+### Selector
+
+A selector is a pure function which computes and selects certain values from current state, selectors are defined as an object with function values:
+
+```javascript
+
+const selectors = {
+    filterVisibleTodos({todos, filter}) {
+        return filter ? todos.filter(todo => todo.includes(filter)) : todos;
+    }
+};
+```
+
+Selectors can also receive arbitary arguments, the first argument is always the `currentState`, rest arguments are those passed to selector on invocation.
+
+When invoke a selector, the `currentState` argument is omitted (it is bound automatically), so the above selector is called just as `const todos = filterVisibleTodos()`;
+
 ## Define a region
 
 To define a region, we just need to provide an `initialState` and a map of `workflows` to `defineRegion` exported function:
@@ -128,7 +145,13 @@ const workflows = {
     }
 };
 
-const todoRegion = defineRegion(initialState, workflows);
+const selectors = {
+    filterVisibleTodos({todos, filter}) {
+        return filter ? todos.filter(todo => todo.includes(filter)) : todos;
+    }
+};
+
+const todoRegion = defineRegion(initialState, workflows, selectors);
 
 export const establishTodo = todoRegion.establish;
 export const joinTodo = todoRegion.join;
@@ -308,3 +331,33 @@ const Counter = ({value, increment, decrement}) => (
 
 export default withTransientRegion(initialState, workflows)(Counter);
 ```
+
+## Specific regions
+
+`react-kiss` also provides some predefined regions to handle common scenarios.
+
+### Query
+
+The `defineQueryRegion` function accepts a request function and defines a region in such structure:
+
+```javascript
+{
+    queries: {
+        [stringifiedParams]: {
+            pendingMutex: 0, // The number of on-the-way request
+            params: {}, // Requesting params
+            response: {
+                data: {}, // Response of success request
+                error: {} // Response of fail request
+            }
+        },
+        ...
+    },
+    request: function, // The workflow to trigger request
+    findQuery: function(params), // Selector to find query object by params
+    findReponse: function(params), // Selector to find query.response object by params
+    findData: function(params) // Selector to find query.response.data object by params
+}
+```
+
+For each invocation of `request` workflow, a `[stringifiedParams]: Query` key-value pair is stored in `queries` state.
