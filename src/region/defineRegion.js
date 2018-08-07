@@ -3,12 +3,12 @@ import {mapValues} from 'lodash';
 import {wrapDisplayName} from 'recompose';
 import {createRegionComponent} from '../utils';
 
-export default (initialState, workflows) => {
+export default (initialState, workflows, selectors) => {
     const {Provider, Consumer} = createContext();
 
     const establish = name => {
         const displayName = `Region(${name || 'Unknown'})`;
-        const Region = createRegionComponent(initialState, workflows, displayName);
+        const Region = createRegionComponent(initialState, workflows, selectors, displayName);
 
         return ComponentIn => {
             const ComponentOut = props => (
@@ -41,7 +41,7 @@ export default (initialState, workflows) => {
                         context => {
                             const propsFromContext = selectContext(context, props);
 
-                            return <ComponentIn {...propsFromContext} {...props} />;
+                            return <ComponentIn {...props} {...propsFromContext} />;
                         }
                     }
                 </Consumer>

@@ -46,4 +46,10 @@ const workflows = {
     }
 };
 
-export default defineRegion(initialState, workflows);
+const selectors = {
+    filterVisibleTodos({todos, filter}) {
+        return filter ? todos.filter(todo => todo.includes(filter)) : todos;
+    }
+};
+
+export default defineRegion(initialState, workflows, selectors);

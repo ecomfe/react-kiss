@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {mapValues} from 'lodash';
+import {mapValues, partial} from 'lodash';
 import consumeWorkflow from './consumeWorkflow';
 
 const applyStateChange = (state, stateChange) => {
@@ -7,7 +7,7 @@ const applyStateChange = (state, stateChange) => {
     return {...state, ...patch};
 };
 
-export default (initialState, workflows, displayName) => class extends Component {
+export default (initialState, workflows, selectors, displayName) => class extends Component {
 
     static displayName = displayName;
 
@@ -35,7 +35,11 @@ export default (initialState, workflows, displayName) => class extends Component
 
     render() {
         const {children} = this.props;
-        const context = {...this.state, ...this.workflows};
+        const boundSelectors = mapValues(
+            selectors,
+            selector => partial(selector, this.state)
+        );
+        const context = {...this.state, ...this.workflows, ...boundSelectors};
 
         return children(context);
     }

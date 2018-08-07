@@ -1,8 +1,8 @@
 import {wrapDisplayName} from 'recompose';
 import {createRegionComponent} from '../utils';
 
-export const withTransientRegion = (initialState, workflows) => {
-    const Region = createRegionComponent(initialState, workflows, 'TrasientRegion');
+export const withTransientRegion = (initialState, workflows, selectors) => {
+    const Region = createRegionComponent(initialState, workflows, selectors, 'TrasientRegion');
 
     return ComponentIn => {
         const ComponentOut = props => (
