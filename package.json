@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint src",
     "start": "NODE_ENV=development webpack-dev-server --config=demo/webpack.config.js",
-    "build": "NODE_ENV=production node rollup.js"
+    "build": "NODE_ENV=production node rollup.js",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
