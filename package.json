@@ -2,7 +2,9 @@
   "name": "react-kiss",
   "version": "1.0.1",
   "description": "A simple and stupid react container solution",
-  "main": "index.js",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "sideEffects": false,
   "scripts": {
     "lint": "eslint src",
     "start": "NODE_ENV=development webpack-dev-server --config=demo/webpack.config.js",
