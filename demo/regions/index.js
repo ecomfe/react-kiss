@@ -1,6 +1,7 @@
 import global from './global';
 import todo from './todo';
 import note from './note';
+import food from './food';
 
 export const establishGlobal = global.establish;
 export const joinGlobal = global.join;
@@ -10,3 +11,6 @@ export const joinTodo = todo.join;
 
 export const establishNote = note.establish;
 export const joinNote = note.join;
+
+export const establishFoodArea = food.establish;
+export const joinFoodArea = food.join;
