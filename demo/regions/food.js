@@ -1,4 +1,4 @@
-import {createArea, defineQueryRegion} from 'react-kiss';
+import {defineEmpire, defineQueryRegion} from 'react-kiss';
 
 const wait = seconds => new Promise(resolve => setTimeout(resolve, seconds * 1000));
 
@@ -29,7 +29,7 @@ const getRestaurantList = async () => {
     ];
 };
 
-export default createArea({
+export default defineEmpire({
     menuQuery: defineQueryRegion(params => getMenu(params)),
     restaurantQuery: defineQueryRegion(() => getRestaurantList())
 });

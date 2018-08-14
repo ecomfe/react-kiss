@@ -1,32 +1,32 @@
 import {each} from 'lodash';
 import {compose} from 'recompose';
-import joinAll from '../region/joinAll';
+import joinAll from './joinAll';
 
-export default queryRegions => {
-    const queryNameList = [];
+export default regions => {
+    const regionNameList = [];
     const joinList = [];
     const establishList = [];
 
-    each(queryRegions, (region, queryName) => {
+    each(regions, (region, name) => {
         const {join, establish} = region;
-        queryNameList.push(queryName);
+        regionNameList.push(name);
         joinList.push(join);
-        establishList.push(establish(queryName));
+        establishList.push(establish(name));
     });
 
     const establish = () => compose(...establishList);
 
-    const join = mapAreaToProps => {
+    const join = mapEmpireToProps => {
         const mapToProps = (...props) => {
             const regionPropsList = props.slice(0, -1);
             const ownProps = props[props.length - 1];
 
-            const areaProps = {};
-            each(queryNameList, (name, i) => {
-                areaProps[name] = regionPropsList[i];
+            const empireProps = {};
+            each(regionNameList, (name, i) => {
+                empireProps[name] = regionPropsList[i];
             });
 
-            return mapAreaToProps(areaProps, ownProps);
+            return mapEmpireToProps(empireProps, ownProps);
         };
 
         return joinAll(...joinList, mapToProps);
