@@ -12,7 +12,7 @@ export default (initialState, workflows, selectors) => {
 
         return ComponentIn => {
             const ComponentOut = props => (
-                <Region>
+                <Region environment={props}>
                     {
                         context => (
                             <Provider value={context}>

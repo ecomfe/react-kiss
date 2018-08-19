@@ -6,7 +6,7 @@ export const withTransientRegion = (initialState, workflows, selectors) => {
 
     return ComponentIn => {
         const ComponentOut = props => (
-            <Region>
+            <Region environment={props}>
                 {context => <ComponentIn {...context} {...props} />}
             </Region>
         );

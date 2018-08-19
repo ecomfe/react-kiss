@@ -11,16 +11,19 @@ export default (initialState, workflows, selectors, displayName) => class extend
 
     static displayName = displayName;
 
-    state = initialState;
+    state = null;
 
     // Since `setState` doesn't guarantee synchronously update of state,
     // we need to manage a state to ensure `getState` function returns correct state object
-    stateInSync = initialState;
+    stateInSync = null;
 
     workflows = null;
 
     constructor(props) {
         super(props);
+
+        this.state = typeof initialState === 'function' ? initialState(props.environment) : initialState;
+        this.stateInSync = this.state;
 
         const getState = () => this.stateInSync;
         const applyNext = stateChange => {
