@@ -1,6 +1,6 @@
 {
   "name": "react-kiss",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "A simple and stupid react container solution",
   "main": "cjs/index.js",
   "module": "es/index.js",
