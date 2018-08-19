@@ -1,35 +1,23 @@
-import {each} from 'lodash';
+import {zipObject} from 'lodash';
 import {compose} from 'recompose';
 import joinAll from './joinAll';
 
 export default regions => {
-    const regionNameList = [];
-    const joinList = [];
-    const establishList = [];
+    const regionNames = Object.keys(regions);
+    const regionValues = Object.values(regions);
 
-    each(regions, (region, name) => {
-        const {join, establish} = region;
-        regionNameList.push(name);
-        joinList.push(join);
-        establishList.push(establish(name));
-    });
-
-    const establish = () => compose(...establishList);
+    const establish = () => compose(...regionValues.map(region => region.establish()));
 
     const join = mapEmpireToProps => {
         const mapToProps = (...props) => {
-            const regionPropsList = props.slice(0, -1);
+            const regionProps = props.slice(0, -1);
             const ownProps = props[props.length - 1];
-
-            const empireProps = {};
-            each(regionNameList, (name, i) => {
-                empireProps[name] = regionPropsList[i];
-            });
+            const empireProps = zipObject(regionNames, regionProps);
 
             return mapEmpireToProps(empireProps, ownProps);
         };
 
-        return joinAll(...joinList, mapToProps);
+        return joinAll(...regionValues.map(region => region.join), mapToProps);
     };
 
     return {establish, join};

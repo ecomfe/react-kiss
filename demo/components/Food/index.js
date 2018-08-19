@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {compose} from 'recompose';
-import {establishFoodArea, joinFoodArea} from 'regions';
+import {establishFood, joinFood} from 'regions';
 import {map, each, keys} from 'lodash';
 
 class Food extends Component {
@@ -58,8 +58,8 @@ const mapToProps = (areaProps, ownProps) => {
 };
 
 const enhance = compose(
-    establishFoodArea(),
-    joinFoodArea(mapToProps)
+    establishFood(),
+    joinFood(mapToProps)
 );
 
 export default enhance(Food);

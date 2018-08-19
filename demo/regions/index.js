@@ -12,5 +12,5 @@ export const joinTodo = todo.join;
 export const establishNote = note.establish;
 export const joinNote = note.join;
 
-export const establishFoodArea = food.establish;
-export const joinFoodArea = food.join;
+export const establishFood = food.establish;
+export const joinFood = food.join;
