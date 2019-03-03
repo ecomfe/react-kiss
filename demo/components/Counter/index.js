@@ -1,7 +1,7 @@
 import {withTransientRegion} from 'react-kiss';
 
 const initialState = {
-    value: 0
+    value: 0,
 };
 
 const workflows = {
@@ -11,7 +11,7 @@ const workflows = {
 
     decrement(payload, {value}) {
         return {value: value - 1};
-    }
+    },
 };
 
 const Counter = ({value, increment, decrement}) => (

@@ -25,7 +25,7 @@ export default (...args) => {
 
         return {
             ...mapToProps(...regionProps, otherProps),
-            ...otherProps
+            ...otherProps,
         };
     };
 

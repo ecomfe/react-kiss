@@ -1,4 +1,4 @@
-import {establishTodo} from 'regions';
+import {establishTodo} from '@/regions';
 import Filter from './Filter';
 import List from './List';
 import AddTodo from './AddTodo';

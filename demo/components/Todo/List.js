@@ -1,4 +1,4 @@
-import {joinTodo} from 'regions';
+import {joinTodo} from '@/regions';
 
 /* eslint-disable react/no-array-index-key */
 const TodoList = ({todos}) => (

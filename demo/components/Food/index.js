@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import {Component, Fragment} from 'react';
 import {compose} from 'recompose';
-import {establishFood, joinFood} from 'regions';
 import {map, each, keys} from 'lodash';
+import {establishFood, joinFood} from '@/regions';
 
 class Food extends Component {
 
@@ -21,7 +21,7 @@ class Food extends Component {
         const {restaurantList, selectMenuData} = this.props;
 
         if (!restaurantList.length) {
-            return <span>searching restaurants...</span>
+            return <span>searching restaurants...</span>;
         }
 
         return (
@@ -53,7 +53,7 @@ const mapToProps = (areaProps, ownProps) => {
         selectMenuData: menuQuery.findData,
         requestMenu: menuQuery.request,
         requestRestaurantList: restaurantQuery.request,
-        ...ownProps
+        ...ownProps,
     };
 };
 

@@ -3,7 +3,7 @@
  * @author zhanglili
  */
 
-import {establishGlobal} from 'regions';
+import {establishGlobal} from '@/regions';
 import Todo from '../Todo';
 import Note from '../Note';
 import Counter from '../Counter';

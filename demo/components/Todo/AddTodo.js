@@ -1,11 +1,11 @@
 import {PureComponent} from 'react';
 import {bind} from 'lodash-decorators';
-import {joinTodo} from 'regions';
+import {joinTodo} from '@/regions';
 
 class AddTodo extends PureComponent {
 
     state = {
-        todoText: ''
+        todoText: '',
     };
 
     @bind()

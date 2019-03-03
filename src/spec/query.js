@@ -4,7 +4,7 @@ import {defineRegion} from '../region';
 
 export default (api, {once = false} = {}) => {
     const initialState = {
-        queries: {}
+        queries: {},
     };
 
     const workflows = {
@@ -19,9 +19,9 @@ export default (api, {once = false} = {}) => {
                         ...state.queries,
                         [paramsKey]: {
                             ...query,
-                            ...queryPatch
-                        }
-                    }
+                            ...queryPatch,
+                        },
+                    },
                 };
             };
 
@@ -49,7 +49,7 @@ export default (api, {once = false} = {}) => {
             finally {
                 yield transfer(query => ({pendingMutex: query.pendingMutex - 1}));
             }
-        }
+        },
     };
 
     const findQuery = ({queries}, params) => queries[stringify(params)];

@@ -1,4 +1,4 @@
-import {joinTodo} from 'regions';
+import {joinTodo} from '@/regions';
 
 /* eslint-disable react/jsx-no-bind */
 const TodoFilter = ({filter, onFilter}) => (
@@ -9,7 +9,7 @@ const TodoFilter = ({filter, onFilter}) => (
 
 const mapToProps = {
     filter: 'filter',
-    onFilter: 'filterByKeyword'
+    onFilter: 'filterByKeyword',
 };
 
 export default joinTodo(mapToProps)(TodoFilter);

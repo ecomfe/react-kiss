@@ -15,11 +15,11 @@ const postTodo = async text => {
 const initialState = {
     todos: [
         'Buy milk',
-        'Meet John at peace park'
+        'Meet John at peace park',
     ],
     filter: '',
     error: null,
-    submitting: false
+    submitting: false,
 };
 
 const workflows = {
@@ -32,7 +32,7 @@ const workflows = {
 
                 return {
                     todos: [...todos, newTodo],
-                    submitting: false
+                    submitting: false,
                 };
             };
         }
@@ -43,13 +43,13 @@ const workflows = {
 
     filterByKeyword(keyword) {
         return {filter: keyword};
-    }
+    },
 };
 
 const selectors = {
     filterVisibleTodos({todos, filter}) {
         return filter ? todos.filter(todo => todo.includes(filter)) : todos;
-    }
+    },
 };
 
 export default defineRegion(initialState, workflows, selectors);

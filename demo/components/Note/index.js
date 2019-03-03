@@ -1,6 +1,6 @@
 import {compose} from 'recompose';
 import {joinAll} from 'react-kiss';
-import {establishNote, joinNote, joinGlobal} from 'regions';
+import {establishNote, joinNote, joinGlobal} from '@/regions';
 
 const Note = ({username, visible, message, onToggle}) => (
     <div style={{marginTop: 20}}>
@@ -18,7 +18,7 @@ const mapToProps = (note, global) => {
         username: global.username,
         message: message,
         visible: note.visible,
-        onToggle: note.toggle
+        onToggle: note.toggle,
     };
 };
 

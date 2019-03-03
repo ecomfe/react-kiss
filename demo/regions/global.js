@@ -1,7 +1,7 @@
 import {defineRegion} from 'react-kiss';
 
 const initialState = {
-    username: 'otakustay'
+    username: 'otakustay',
 };
 
 const workflows = {};
