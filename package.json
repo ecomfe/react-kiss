@@ -35,6 +35,7 @@
     "recompose": "^0.30.0"
   },
   "devDependencies": {
+    "enzyme": "^3.9.0",
     "lodash-decorators": "^6.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
