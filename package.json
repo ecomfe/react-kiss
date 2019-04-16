@@ -9,6 +9,7 @@
     "lint": "skr lint src demo *.js",
     "start": "skr dev --src=demo",
     "build": "skr rollup --clean",
+    "test": "skr test --target=react --coverage",
     "prepublishOnly": "yarn run build"
   },
   "repository": {
@@ -34,10 +35,11 @@
     "recompose": "^0.30.0"
   },
   "devDependencies": {
+    "enzyme": "^3.9.0",
     "lodash-decorators": "^6.0.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "reskript": "^0.8.0",
+    "reskript": "^0.10.2",
     "webpack": "^4.16.5"
   },
   "peerDependencies": {
